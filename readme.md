@@ -9,25 +9,25 @@
 [size-img]: https://packagephobia.now.sh/badge?p=Name
 [size]: https://packagephobia.now.sh/result?p=Name
 
-「 desc 」
+「 操控[docker](https://www.docker.com/)容器的一个 Rust 接口 」
 
 [中文](./readme.md) | [english](https://github.com/softprops/shiplift)
 
 ---
 
-## 校对 🀄️
+## 校对 ✅
 
 <!-- doc-templite START generated -->
 <!-- repo = 'softprops/shiplift' -->
-<!-- commit = '79d65c286025c551a775c0964d168e6feb4b3409' -->
-<!-- time = '2018-11-14' -->
+<!-- commit = 'eb98b1916c0220e44e2d0f3c869c01a2dd037f60' -->
+<!-- time = '2019-2-25' -->
 
-| 翻译的原文 | 与日期        | 最新更新 | 更多                       |
-| ---------- | ------------- | -------- | -------------------------- |
-| [commit]   | ⏰ 2018-11-14 | ![last]  | [中文翻译][translate-list] |
+| 翻译的原文 | 与日期       | 最新更新 | 更多                       |
+| ---------- | ------------ | -------- | -------------------------- |
+| [commit]   | ⏰ 2019-2-25 | ![last]  | [中文翻译][translate-list] |
 
 [last]: https://img.shields.io/github/last-commit/softprops/shiplift.svg
-[commit]: https://github.com/softprops/shiplift/tree/79d65c286025c551a775c0964d168e6feb4b3409
+[commit]: https://github.com/softprops/shiplift/tree/eb98b1916c0220e44e2d0f3c869c01a2dd037f60
 
 <!-- doc-templite END generated -->
 
@@ -41,16 +41,11 @@
 
 ---
 
-### 目录
+# shiplift
 
-<!-- START doctoc -->
-<!-- END doctoc -->
+[![Build Status](https://travis-ci.org/softprops/shiplift.svg)](https://travis-ci.org/softprops/shiplift) [![crates.io](http://meritbadge.herokuapp.com/shiplift)](https://crates.io/crates/shiplift) [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) [![Released API docs](https://docs.rs/shiplift/badge.svg)](http://docs.rs/shiplift) [![Master API docs](https://img.shields.io/badge/docs-master-green.svg)](https://softprops.github.io/shiplift)
 
-# 升船机
-
-[![Build Status](https://travis-ci.org/softprops/shiplift.svg)](https://travis-ci.org/softprops/shiplift) [![crates.io](http://meritbadge.herokuapp.com/shiplift)](https://crates.io/crates/shiplift) [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
-
-> 用于机动的生锈界面[搬运工人](https://www.docker.com/)集装箱
+操控[docker](https://www.docker.com/)容器的一个 Rust 接口
 
 ## 安装
 
@@ -58,193 +53,69 @@
 
 ```toml
 [dependencies]
-shiplift = "0.3"
+shiplift = "0.4"
 ```
-
-## 文档
-
-找到他们[这里](https://softprops.github.io/shiplift).
 
 ## 用法
 
-可以在此存储库中找到一些小的示例程序[示例目录](https://github.com/softprops/shiplift/tree/master/examples).
+### 与主机沟通
 
-### 与主持人沟通
-
-要使用升船机,您必须首先拥有一个可随时使用的码头守护程序.通常,此守护程序进程可通过名为 env var 指定的 URL 进行解析`DOCKER_HOST`.如果您使用的是 osx,[泊坞窗机](https://docs.docker.com/machine/)通常情况下,您已经设置了运行时所需的所有内容`docker-machine env {envid}`.
+要使用 shiplift，首先，您必须拥有一个可随时能用的 docker 守护程序。通常，此守护程序进程可通过名为`DOCKER_HOST`的环境变量，指定 URL 解析。
 
 ```rust
-extern crate shiplift;
 let docker = shiplift::Docker::new();
 ```
 
-如果你想更明确,你可以提供一个主机的形式`url.Url`.
+如果您希望更明确，可用一种`url.Url`形式提供一个主机。
 
 ```rust
-extern crate shiplift;
-extern crate url;
-
 use shiplift::Docker;
 use url::Url;
 
 let docker = Docker::host(Url::parse("http://yourhost").unwrap());
 ```
 
-### 图片
+### 例子
 
-如果您正在与 docker 容器进行交互,那么您可能还需要与 docker 图像信息进行交互.您可以与 docker 图像交互`docker.images()`.
+可以在此存储库中的[示例目录](https://github.com/softprops/shiplift/tree/master/examples)，找到许多小的可运行示例程序。
 
-```rust
-extern crate shiplift;
+- [containers：容器](https://github.com/softprops/shiplift/blob/master/examples/containers.rs) 》列出当前 Docker 主机上的 Docker 镜像
+- [containercopyinto](https://github.com/softprops/shiplift/blob/master/examples/containercopyinto.rs) 》将字节切片作为文件复制到容器中（请参见“bytes”）。
+- [containercreate](https://github.com/softprops/shiplift/blob/master/examples/containercreate.rs) 》返回用于创建新容器实例的生成器接口
+- [containerdelete](https://github.com/softprops/shiplift/blob/master/examples/containerdelete.rs) 》删除容器实例
+- [containerexec](https://github.com/softprops/shiplift/blob/master/examples/containerexec.rs) 》在容器中执行指定的命令
+- [containerinspect](https://github.com/softprops/shiplift/blob/master/examples/containerinspect.rs) 》检查命名镜像的详细信息
+- [containercopyfrom](https://github.com/softprops/shiplift/blob/master/examples/containercopyfrom.rs) 》从容器复制文件/文件夹。结果流是提取文件的压缩格式。
 
-use shiplift::Docker;
+<br>
 
-let docker = Docker.new();
-let images = docker.images();
-```
+- [images：镜像](https://github.com/softprops/shiplift/blob/master/examples/images.rs) 》列出当前 Docker 主机上的 Docker 镜像
+- [imagepull](https://github.com/softprops/shiplift/blob/master/examples/imagepull.rs) 》从现有镜像中提取并创建新的 Docker 镜像
+- [imagesearch](https://github.com/softprops/shiplift/blob/master/examples/imagesearch.rs) 》按术语搜索 Docker 镜像
+- [imagebuild](https://github.com/softprops/shiplift/blob/master/examples/imagebuild.rs) 》通过读取目标目录中的 docker file 生成新的镜像 build
+- [imagedelete](https://github.com/softprops/shiplift/blob/master/examples/imagedelete.rs) 》删除镜像
+- [imageinspect](https://github.com/softprops/shiplift/blob/master/examples/imageinspect.rs) 》从现有镜像中提取并创建新的 Docker 镜像
+<br>
+- [networks：网络](https://github.com/softprops/shiplift/blob/master/examples/networks.rs) 》列出当前 Docker 主机上的 Docker 镜像
+- [networkcreate](https://github.com/softprops/shiplift/blob/master/examples/networkcreate.rs) 》返回用于创建新容器实例的生成器接口
+- [networkdisconnect](https://github.com/softprops/shiplift/blob/master/examples/networkdisconnect.rs) 》断开容器与网络的连接
+- [networkinspect](https://github.com/softprops/shiplift/blob/master/examples/networkinspect.rs) 》检查命名镜像的详细信息
+- [networkconnect](https://github.com/softprops/shiplift/blob/master/examples/networkconnect.rs) 》将容器连接到网络
+- [networkdelete](https://github.com/softprops/shiplift/blob/master/examples/networkdelete.rs) 》删除镜像
+<br>
+- [volumes](https://github.com/softprops/shiplift/blob/master/examples/volumes.rs) 》列出 Docker 卷
+- [volumecreate](https://github.com/softprops/shiplift/blob/master/examples/volumecreate.rs) 》创建卷
+- [volumedelete](https://github.com/softprops/shiplift/blob/master/examples/volumedelete.rs) 》删除卷
+<br>
+- [top](https://github.com/softprops/shiplift/blob/master/examples/top.rs) 》返回有关容器进程的信息的俯视图
+- [events](https://github.com/softprops/shiplift/blob/master/examples/events.rs) 》返回 Docker 事件流
+- [export](https://github.com/softprops/shiplift/blob/master/examples/export.rs) 》将此镜像导出到 tarball
+- [信息-info](https://github.com/softprops/shiplift/blob/master/examples/info.rs)
+- [记录-logs](https://github.com/softprops/shiplift/blob/master/examples/logs.rs)
+- [状态-stats](https://github.com/softprops/shiplift/blob/master/examples/stats.rs)
 
-#### 列出主机 - 本地映像
+## 更新计划
 
-```rust
-for i in images.list(&Default::default()).unwrap() {
-  println!("-> {:?}", i);
-}
-```
+- give image pull chunked json a proper type
 
-#### 找到远程图像
-
-```rust
-for i in image.search("rust").unwrap() {
-  println!("- {:?}", i);
-}
-```
-
-#### 通过拉动现有图像来创建新图像
-
-```rust
-use shiplift::PullOptions;
-let output = images.pull(
-  &PullOptions::builder().image("redis:2.8.18").build()
-).unwrap();
-for o in output {
-  println!("{:?}", o);
-}
-```
-
-### 从包含 Dockerfile 的目录的内容构建映像
-
-以下相当于`docker build -t shiplift_test .`
-
-```rust
-use shiplift::BuildOptions;
-
-let output = images.build(
-     &BuildOptions::builder(".").tag("shiplift_test").build()
-).unwrap();
-for o in output {
-    println!("{:?}", o);
-}
-```
-
-#### 访问图像信息
-
-```rust
-let img = images.get("imagename");
-```
-
-##### 检查图像信息
-
-```rust
-println!("- {:?}", img.inspect().unwrap());
-```
-
-##### 获取图像历史记录
-
-```rust
-for h in img.history().unwrap() {
-  println!("- {:?}", h);
-}
-```
-
-###### 删除图像
-
-```rust
-println!("- {:?}", img.delete().unwrap());
-```
-
-### 集装箱
-
-容器是图像的实例.要获得对此接口的访问权限`docker.containers()`
-
-```rust
-extern crate shiplift;
-
-use shiplift::Docker;
-
-let docker = Docker.new();
-let containers = docker.containers();
-```
-
-#### 列出主机本地容器
-
-```rust
-for c in containers.list(&Default::default()).unwrap() {
-  println!("- {:?}", c);
-}
-```
-
-#### 获取容器参考
-
-```rust
-let container = containers.get("containerid");
-```
-
-#### 检查容器细节
-
-```rust
-println!("- {:?}", container.inspect());
-```
-
-#### 访问`top`信息
-
-```rust
-println!("- {:?}", container.top().unwrap());
-```
-
-#### 查看容器日志
-
-(todoc)
-
-#### 查看容器更改列表
-
-```rust
-for c in container.changes().unwrap() {
-  println!("- {:?}", c);
-}
-```
-
-#### 流容器统计
-
-```rust
-for stats in container.stats().unwrap() {
-  println!("- {:?}", stats);
-}
-```
-
-### 停止,启动,重启容器
-
-```rust
-container.stop();
-container.start();
-container.restart();
-```
-
-### 杂项
-
-todoc
-
-## 路线图
-
-有计划在 0.4.0 中从 rustc-serialize 切换到 serde 进行序列化,这不应该对当前接口产生重大影响.
-
-Doug Tangren(softprops)2015-2016
+Doug Tangren（softprops）2015-2018

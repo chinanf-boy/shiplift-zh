@@ -21,10 +21,9 @@
 <!-- repo = 'softprops/shiplift' -->
 <!-- commit = 'eb98b1916c0220e44e2d0f3c869c01a2dd037f60' -->
 <!-- time = '2019-2-25' -->
-
-| 翻译的原文 | 与日期       | 最新更新 | 更多                       |
-| ---------- | ------------ | -------- | -------------------------- |
-| [commit]   | ⏰ 2019-2-25 | ![last]  | [中文翻译][translate-list] |
+翻译的原文 | 与日期 | 最新更新 | 更多
+---|---|---|---
+[commit] | ⏰ 2019-2-25 | ![last] | [中文翻译][translate-list]
 
 [last]: https://img.shields.io/github/last-commit/softprops/shiplift.svg
 [commit]: https://github.com/softprops/shiplift/tree/eb98b1916c0220e44e2d0f3c869c01a2dd037f60
@@ -37,7 +36,7 @@
 
 ## 生活
 
-[help me live , live need money 💰](https://github.com/chinanf-boy/live-need-money)
+[If help, **buy** me coffee —— 营养跟不上了，给我来瓶营养快线吧! 💰](https://github.com/chinanf-boy/live-need-money)
 
 ---
 

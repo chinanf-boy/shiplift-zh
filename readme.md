@@ -21,9 +21,10 @@
 <!-- repo = 'softprops/shiplift' -->
 <!-- commit = 'eb98b1916c0220e44e2d0f3c869c01a2dd037f60' -->
 <!-- time = '2019-2-25' -->
-翻译的原文 | 与日期 | 最新更新 | 更多
----|---|---|---
-[commit] | ⏰ 2019-2-25 | ![last] | [中文翻译][translate-list]
+
+| 翻译的原文 | 与日期       | 最新更新 | 更多                       |
+| ---------- | ------------ | -------- | -------------------------- |
+| [commit]   | ⏰ 2019-2-25 | ![last]  | [中文翻译][translate-list] |
 
 [last]: https://img.shields.io/github/last-commit/softprops/shiplift.svg
 [commit]: https://github.com/softprops/shiplift/tree/eb98b1916c0220e44e2d0f3c869c01a2dd037f60
@@ -94,18 +95,24 @@ let docker = Docker::host(Url::parse("http://yourhost").unwrap());
 - [imagebuild](https://github.com/softprops/shiplift/blob/master/examples/imagebuild.rs) 》通过读取目标目录中的 docker file 生成新的镜像 build
 - [imagedelete](https://github.com/softprops/shiplift/blob/master/examples/imagedelete.rs) 》删除镜像
 - [imageinspect](https://github.com/softprops/shiplift/blob/master/examples/imageinspect.rs) 》从现有镜像中提取并创建新的 Docker 镜像
+
 <br>
+
 - [networks：网络](https://github.com/softprops/shiplift/blob/master/examples/networks.rs) 》列出当前 Docker 主机上的 Docker 镜像
 - [networkcreate](https://github.com/softprops/shiplift/blob/master/examples/networkcreate.rs) 》返回用于创建新容器实例的生成器接口
 - [networkdisconnect](https://github.com/softprops/shiplift/blob/master/examples/networkdisconnect.rs) 》断开容器与网络的连接
 - [networkinspect](https://github.com/softprops/shiplift/blob/master/examples/networkinspect.rs) 》检查命名镜像的详细信息
 - [networkconnect](https://github.com/softprops/shiplift/blob/master/examples/networkconnect.rs) 》将容器连接到网络
 - [networkdelete](https://github.com/softprops/shiplift/blob/master/examples/networkdelete.rs) 》删除镜像
+
 <br>
+
 - [volumes](https://github.com/softprops/shiplift/blob/master/examples/volumes.rs) 》列出 Docker 卷
 - [volumecreate](https://github.com/softprops/shiplift/blob/master/examples/volumecreate.rs) 》创建卷
 - [volumedelete](https://github.com/softprops/shiplift/blob/master/examples/volumedelete.rs) 》删除卷
+
 <br>
+
 - [top](https://github.com/softprops/shiplift/blob/master/examples/top.rs) 》返回有关容器进程的信息的俯视图
 - [events](https://github.com/softprops/shiplift/blob/master/examples/events.rs) 》返回 Docker 事件流
 - [export](https://github.com/softprops/shiplift/blob/master/examples/export.rs) 》将此镜像导出到 tarball
